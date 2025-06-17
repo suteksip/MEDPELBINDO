@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeritaKu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav" id="topNav">
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+            <i class="fas fa-bars" id="navIcon"></i>
+        </button>
+        <h1 class="logo">BeritaKu</h1>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link active">HOME</a>
+            <a href="materi.html" class="nav-link">MATERI</a>
+            <a href="latihan.html" class="nav-link">LATIHAN</a>
+            <a href="permainan.html" class="nav-link">PERMAINAN</a>
+        </div>
+        <div class="user-section">
+            <span class="user-greeting" id="userGreeting"></span>
+            <button class="logout-button" id="logoutButton">Keluar</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Hero Section -->
+        <section class="yellow-section">
+            <div class="content-header">
+                <h1 class="page-title">Selamat Datang di BeritaKu</h1>
+                <p class="page-description">Platform pembelajaran berita interaktif untuk generasi muda</p>
+            </div>
+        </section>
+
+        <!-- Content Section -->
+        <section class="content-section">
+            <div class="grid-container">
+                <div class="content-block">
+                    <h2>Materi Pembelajaran</h2>
+                    <p>Pelajari dasar-dasar jurnalistik dan penulisan berita dengan materi yang interaktif.</p>
+                    <a href="materi.html" class="cta-button cta-primary">
+                        MULAI BELAJAR →
+                    </a>
+                </div>
+                <div class="content-block">
+                    <h2>Latihan Soal</h2>
+                    <p>Uji pemahaman Anda dengan berbagai latihan soal yang menarik.</p>
+                    <a href="latihan.html" class="cta-button cta-secondary">
+                        MULAI LATIHAN →
+                    </a>
+                </div>
+                <div class="content-block">
+                    <h2>Permainan Edukatif</h2>
+                    <p>Belajar sambil bermain dengan permainan yang menyenangkan.</p>
+                    <a href="permainan.html" class="cta-button cta-primary">
+                        MAIN SEKARANG →
+                    </a>
+                </div>
+                <div class="content-block">
+                    <h2>Komunitas</h2>
+                    <p>Bergabung dengan komunitas pelajar jurnalistik muda.</p>
+                    <a href="#" class="cta-button cta-secondary">
+                        GABUNG →
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Check if user is logged in
+        window.addEventListener('DOMContentLoaded', function() {
+            const userName = localStorage.getItem('userName');
+            if (!userName) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Update greeting
+            const userGreeting = document.getElementById('userGreeting');
+            userGreeting.textContent = `Hai, ${userName}!`;
+        });
+
+        // Handle logout
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            localStorage.removeItem('userName');
+            window.location.href = 'login.html';
+        });
+
+        // Handle navigation toggle
+        const navToggle = document.getElementById('navToggle');
+        const navIcon = document.getElementById('navIcon');
+        const topNav = document.getElementById('topNav');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', function() {
+            topNav.classList.toggle('collapsed');
+            navLinks.classList.toggle('active');
+            
+            // Toggle icon
+            if (topNav.classList.contains('collapsed')) {
+                navIcon.classList.remove('fa-bars');
+                navIcon.classList.add('fa-times');
+            } else {
+                navIcon.classList.remove('fa-times');
+                navIcon.classList.add('fa-bars');
+            }
+        });
+    </script>
+</body>
+</html>

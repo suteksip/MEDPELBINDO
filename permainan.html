@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permainan - BeritaKu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .game-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .game-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .game-title {
+            color: var(--yellow);
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .game-controls {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .game-button {
+            background: var(--green);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Space Grotesk', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .game-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-canvas {
+            background: var(--navy);
+            border-radius: 8px;
+            margin: 0 auto;
+            display: block;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-instructions {
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .crossword-container {
+            grid-column: 1 / -1;
+            width: 100%;
+        }
+
+        .crossword-canvas {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .instructions {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .instructions h3 {
+            color: var(--yellow);
+            margin-bottom: 1rem;
+        }
+
+        .instructions ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .instructions li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .instructions li::before {
+            content: "•";
+            color: var(--green);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .game-container {
+                padding: 1rem;
+            }
+            
+            .game-title {
+                font-size: 1.5rem;
+            }
+            
+            .game-canvas {
+                width: 100%;
+                height: auto;
+            }
+
+            .game-instructions {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav" id="topNav">
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+            <i class="fas fa-bars" id="navIcon"></i>
+        </button>
+        <h1 class="logo">BeritaKu</h1>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link">HOME</a>
+            <a href="materi.html" class="nav-link">MATERI</a>
+            <a href="latihan.html" class="nav-link">LATIHAN</a>
+            <a href="permainan.html" class="nav-link active">PERMAINAN</a>
+        </div>
+        <div class="user-section">
+            <span class="user-greeting" id="userGreeting"></span>
+            <button class="logout-button" id="logoutButton">Keluar</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Hero Section -->
+        <section class="yellow-section">
+            <div class="content-header">
+                <h1 class="page-title">Permainan Edukatif</h1>
+                <p class="page-description">Belajar sambil bermain dengan permainan interaktif yang menyenangkan</p>
+            </div>
+        </section>
+
+        <!-- Content Section -->
+        <section class="content-section">
+            <div class="game-container">
+                <h2 class="game-title">Teka-Teki Silang Jurnalistik</h2>
+                <p class="game-description">
+                    Asah pengetahuan Anda tentang dunia jurnalistik dengan menyelesaikan teka-teki silang ini.
+                    Temukan kata-kata kunci dalam jurnalistik dan uji pemahaman Anda!
+                </p>
+
+                <canvas id="crosswordCanvas" class="game-canvas" width="900" height="600"></canvas>
+
+                <div class="game-controls">
+                    <button id="startCrossword" class="game-button">Mulai Baru</button>
+                </div>
+
+                <div class="instructions">
+                    <h3>Cara Bermain:</h3>
+                    <ul>
+                        <li>Klik pada kotak untuk memilih arah (mendatar/menurun)</li>
+                        <li>Gunakan keyboard untuk mengisi huruf</li>
+                        <li>Tekan Tab untuk berganti antara mendatar dan menurun</li>
+                        <li>Tekan Backspace untuk menghapus huruf</li>
+                        <li>Selesaikan semua kata untuk memenangkan permainan</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="games/crossword.js"></script>
+    <script>
+        // Check if user is logged in
+        window.addEventListener('DOMContentLoaded', function() {
+            const userName = localStorage.getItem('userName');
+            if (!userName) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Update greeting
+            const userGreeting = document.getElementById('userGreeting');
+            userGreeting.textContent = `Hai, ${userName}!`;
+        });
+
+        // Handle logout
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            localStorage.removeItem('userName');
+            window.location.href = 'login.html';
+        });
+
+        // Handle navigation toggle
+        const navToggle = document.getElementById('navToggle');
+        const navIcon = document.getElementById('navIcon');
+        const topNav = document.getElementById('topNav');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', function() {
+            topNav.classList.toggle('collapsed');
+            navLinks.classList.toggle('active');
+            
+            // Toggle icon
+            if (topNav.classList.contains('collapsed')) {
+                navIcon.classList.remove('fa-bars');
+                navIcon.classList.add('fa-times');
+            } else {
+                navIcon.classList.remove('fa-times');
+                navIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Initialize crossword game
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('crosswordCanvas');
+            const game = new Crossword(canvas);
+            game.start();
+
+            document.getElementById('startCrossword').addEventListener('click', () => {
+                game.restart();
+            });
+        });
+    </script>
+</body>
+</html>

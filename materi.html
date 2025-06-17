@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - BeritaKu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .material-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .material-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .material-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .material-card h2 {
+            color: var(--yellow);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--green);
+            padding-bottom: 0.5rem;
+        }
+
+        .material-card h3 {
+            color: var(--yellow);
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .material-card p {
+            color: #FFFFFF;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .material-card ul {
+            color: #FFFFFF;
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .material-card li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .material-card li::before {
+            content: "•";
+            color: var(--green);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .example-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 3px solid var(--green);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--yellow);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--green) 0%, #009935 100%);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: white;
+        }
+
+        .video-container {
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .responsive-video {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .responsive-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav" id="topNav">
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+            <i class="fas fa-bars" id="navIcon"></i>
+        </button>
+        <h1 class="logo">BeritaKu</h1>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link">HOME</a>
+            <a href="materi.html" class="nav-link active">MATERI</a>
+            <a href="latihan.html" class="nav-link">LATIHAN</a>
+            <a href="permainan.html" class="nav-link">PERMAINAN</a>
+        </div>
+        <div class="user-section">
+            <span class="user-greeting" id="userGreeting"></span>
+            <button class="logout-button" id="logoutButton">Keluar</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Hero Section -->
+        <section class="yellow-section">
+            <div class="content-header">
+                <h1 class="page-title">Materi Teks Berita</h1>
+                <p class="page-description">Pelajari dasar-dasar jurnalistik dan cara menulis berita yang baik dan benar</p>
+            </div>
+        </section>
+
+        <!-- Content Section -->
+        <section class="content-section">
+            <div class="material-cards">
+                <!-- Card 1: Pengertian dan Ciri -->
+                <div class="material-card">
+                    <h2>Pengertian dan Ciri Teks Berita</h2>
+                    <p>Teks berita adalah tulisan yang menyampaikan informasi tentang suatu kejadian nyata yang terjadi di lingkungan sekitar, baik lokal, nasional, maupun internasional.</p>
+                    
+                    <h3>Ciri Utama Teks Berita:</h3>
+                    <ul>
+                        <li><strong>Faktual:</strong> Berdasarkan fakta, bukan opini atau imajinasi</li>
+                        <li><strong>Aktual:</strong> Peristiwa baru saja terjadi atau masih hangat</li>
+                        <li><strong>Penting:</strong> Layak untuk diketahui publik</li>
+                        <li><strong>Objektif:</strong> Tidak memihak dan tidak mengandung pendapat pribadi</li>
+                    </ul>
+
+                    <div class="example-box">
+                        <h3>Contoh Peristiwa yang Bisa Jadi Berita:</h3>
+                        <ul>
+                            <li>Banjir di suatu kota</li>
+                            <li>Keberhasilan siswa menjuarai lomba</li>
+                            <li>Kecelakaan lalu lintas</li>
+                            <li>Kegiatan upacara bendera di sekolah</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 2: Struktur -->
+                <div class="material-card">
+                    <h2>Struktur Teks Berita</h2>
+                    
+                    <h3>1. Judul Berita (Headline)</h3>
+                    <ul>
+                        <li>Ditulis singkat dan menarik</li>
+                        <li>Mencerminkan isi berita</li>
+                        <li>Mengandung unsur penting dari berita</li>
+                    </ul>
+                    <div class="example-box">
+                        Contoh: "Siswa SMP Juara Lomba Sains Tingkat Kota"
+                    </div>
+
+                    <h3>2. Teras Berita (Lead)</h3>
+                    <ul>
+                        <li>Paragraf pertama dari teks berita</li>
+                        <li>Memuat informasi utama dan ringkasan berita</li>
+                        <li>Menjawab pertanyaan 5W+1H secara singkat</li>
+                    </ul>
+                    <div class="example-box">
+                        Contoh: "Seorang siswa SMP Negeri 2 berhasil meraih juara pertama dalam lomba sains tingkat kota yang diadakan pada hari Senin, 27 Mei 2025 di Balai Kota."
+                    </div>
+
+                    <h3>3. Isi Berita (Body)</h3>
+                    <ul>
+                        <li>Mengembangkan informasi dari teras berita</li>
+                        <li>Menjelaskan detail waktu, tempat, latar belakang, dan kronologi</li>
+                        <li>Dilengkapi kutipan dari narasumber</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Unsur 5W+1H -->
+                <div class="material-card">
+                    <h2>Unsur-Unsur Berita (5W+1H)</h2>
+                    <div class="highlight-box">
+                        <ul>
+                            <li><strong>What:</strong> Apa yang terjadi?</li>
+                            <li><strong>Who:</strong> Siapa yang terlibat?</li>
+                            <li><strong>When:</strong> Kapan kejadian itu terjadi?</li>
+                            <li><strong>Where:</strong> Di mana kejadian itu terjadi?</li>
+                            <li><strong>Why:</strong> Mengapa kejadian itu terjadi?</li>
+                            <li><strong>How:</strong> Bagaimana proses kejadiannya?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 4: Kaidah Kebahasaan -->
+                <div class="material-card">
+                    <h2>Kaidah Kebahasaan Teks Berita</h2>
+                    
+                    <h3>1. Bahasa Baku</h3>
+                    <div class="example-box">
+                        <p><strong>Salah:</strong> "anak itu pinter banget"</p>
+                        <p><strong>Benar:</strong> "anak itu sangat pintar"</p>
+                    </div>
+
+                    <h3>2. Kata Kerja</h3>
+                    <ul>
+                        <li><strong>Kata kerja aksi:</strong> mengikuti, menyampaikan, menyerahkan</li>
+                        <li><strong>Kata kerja mental:</strong> merasa bangga, mengira, menyadari</li>
+                    </ul>
+
+                    <h3>3. Jenis Kalimat</h3>
+                    <div class="example-box">
+                        <p><strong>Kalimat langsung:</strong> "Saya sangat senang bisa menang," kata Dimas.</p>
+                        <p><strong>Kalimat tidak langsung:</strong> Dimas mengatakan bahwa ia sangat senang bisa menang.</p>
+                    </div>
+
+                    <h3>4. Konjungsi Kronologis</h3>
+                    <ul>
+                        <li>kemudian</li>
+                        <li>setelah itu</li>
+                        <li>karena</li>
+                        <li>namun</li>
+                        <li>sehingga</li>
+                    </ul>
+                </div>
+
+                <!-- Card 5: Berita Asli vs Palsu -->
+                <div class="material-card">
+                    <h2>Membedakan Berita Asli dan Palsu</h2>
+
+                    <div class="videos-grid">
+                        <div class="video-container">
+                            <h3>Contoh Video Hoax:</h3>
+                            <div class="responsive-video">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/tXWkL79zhNw?si=Q3SSypndAGGF4O0s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+
+                        <div class="video-container">
+                            <h3>Contoh Video Berita Fakta:</h3>
+                            <div class="responsive-video">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/103ozJLQGwA?si=RV9iCZ3buhyLcY-T" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-table">
+                        <table>
+                            <tr>
+                                <th>Berita Asli</th>
+                                <th>Berita Palsu (Hoaks)</th>
+                            </tr>
+                            <tr>
+                                <td>Ditulis oleh media resmi</td>
+                                <td>Sumber tidak jelas</td>
+                            </tr>
+                            <tr>
+                                <td>Ada nama penulis dan tanggal resmi</td>
+                                <td>Tidak ada nama penulis</td>
+                            </tr>
+                            <tr>
+                                <td>Bahasa baku dan sesuai EYD</td>
+                                <td>Bahasa tidak sesuai ejaan</td>
+                            </tr>
+                            <tr>
+                                <td>Menyajikan fakta berdasarkan data</td>
+                                <td>Penuh opini dan emosi</td>
+                            </tr>
+                            <tr>
+                                <td>Ada kutipan narasumber jelas</td>
+                                <td>Tidak ada narasumber jelas</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <h3>Cara Memeriksa Kebenaran Berita:</h3>
+                    <ul>
+                        <li>Memeriksa sumber berita</li>
+                        <li>Memeriksa judul berita</li>
+                        <li>Baca seluruh berita</li>
+                        <li>Cek tanggal dan waktu</li>
+                        <li>Cari berita serupa pada media resmi lainnya</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Check if user is logged in
+        window.addEventListener('DOMContentLoaded', function() {
+            const userName = localStorage.getItem('userName');
+            if (!userName) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Update greeting
+            const userGreeting = document.getElementById('userGreeting');
+            userGreeting.textContent = `Hai, ${userName}!`;
+        });
+
+        // Handle logout
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            localStorage.removeItem('userName');
+            window.location.href = 'login.html';
+        });
+
+        // Handle navigation toggle
+        const navToggle = document.getElementById('navToggle');
+        const navIcon = document.getElementById('navIcon');
+        const topNav = document.getElementById('topNav');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', function() {
+            topNav.classList.toggle('collapsed');
+            navLinks.classList.toggle('active');
+            
+            // Toggle icon
+            if (topNav.classList.contains('collapsed')) {
+                navIcon.classList.remove('fa-bars');
+                navIcon.classList.add('fa-times');
+            } else {
+                navIcon.classList.remove('fa-times');
+                navIcon.classList.add('fa-bars');
+            }
+        });
+    </script>
+</body>
+</html>
